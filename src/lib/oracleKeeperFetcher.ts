@@ -267,7 +267,7 @@ export class OracleKeeperFetcher implements OracleFetcher {
   async fetchOracleCandles(tokenSymbol: string, period: string, limit: number): Promise<FromNewToOldArray<Bar>> {
     tokenSymbol = getNormalizedTokenSymbol(tokenSymbol);
 
-    return fetch(buildUrl(this.url!, "/prices/candles", { tokenSymbol, period, limit }))
+    return fetch(buildUrl(this.url!, "/prices/candles", { tokenSymbol, period, limit:10 }))
       .then((res) => res.json())
       .then((data) => {
         const res =

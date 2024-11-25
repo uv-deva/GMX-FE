@@ -240,10 +240,10 @@ export function getIncreaseError(p: {
   }
 
   // Hardcoded for Odyssey
-  const _minCollateralUsd = expandDecimals(2, USD_DECIMALS);
+  const _minCollateralUsd = expandDecimals(1, USD_DECIMALS);
 
   if (!existingPosition && (collateralUsd === undefined ? undefined : collateralUsd < _minCollateralUsd)) {
-    return [t`Min order: ${formatUsd(_minCollateralUsd)}`];
+    // return [t`Min order: ${formatUsd(_minCollateralUsd)}`];
   }
 
   if (
@@ -251,7 +251,7 @@ export function getIncreaseError(p: {
       ? undefined
       : nextPositionValues.nextCollateralUsd < _minCollateralUsd
   ) {
-    return [t`Min collateral: ${formatUsd(_minCollateralUsd)}`];
+    // return [t`Min collateral: ${formatUsd(_minCollateralUsd)}`];
   }
 
   if (sizeDeltaUsd <= 0) {
@@ -260,6 +260,7 @@ export function getIncreaseError(p: {
 
   if (!isLimit) {
     if (isLong && (longLiquidity === undefined || longLiquidity < sizeDeltaUsd)) {
+      console.log(isLong, longLiquidity, longLiquidity ,sizeDeltaUsd)
       return [t`Max ${indexToken.symbol} long exceeded`];
     }
 
@@ -334,11 +335,11 @@ export function getIsMaxLeverageExceeded(
     minCollateralFactor = minCollateralFactorForMarket;
   }
 
-  const maxLeverage = bigMath.mulDiv(PRECISION, BASIS_POINTS_DIVISOR_BIGINT, minCollateralFactor);
+  // const maxLeverage = bigMath.mulDiv(PRECISION, BASIS_POINTS_DIVISOR_BIGINT, minCollateralFactor);
 
-  if (nextLeverage > maxLeverage) {
-    return true;
-  }
+  // if (nextLeverage > maxLeverage) {
+  //   return true;
+  // }
 
   return false;
 }

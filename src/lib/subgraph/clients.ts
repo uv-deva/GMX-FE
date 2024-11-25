@@ -1,5 +1,5 @@
 import { createClient } from "./utils";
-import { ARBITRUM, ARBITRUM_GOERLI, AVALANCHE, AVALANCHE_FUJI, ETH_MAINNET } from "config/chains";
+import { ARBITRUM, ARBITRUM_GOERLI, AVALANCHE, AVALANCHE_FUJI, DEPO, ETH_MAINNET } from "config/chains";
 
 export const chainlinkClient = createClient(ETH_MAINNET, "chainLink");
 
@@ -11,6 +11,8 @@ export const nissohGraphClient = createClient(ARBITRUM, "nissohVault");
 export const avalancheGraphClient = createClient(AVALANCHE, "stats");
 export const avalancheReferralsGraphClient = createClient(AVALANCHE, "referrals");
 export const avalancheFujiReferralsGraphClient = createClient(AVALANCHE_FUJI, "referrals");
+
+export const depoGraphClient = createClient(DEPO, "stats");
 
 export const arbitrumSyntheticsStatsClient = createClient(ARBITRUM, "syntheticsStats");
 export const avalancheSyntheticsStatsClient = createClient(AVALANCHE, "syntheticsStats");
@@ -66,6 +68,8 @@ export function getGmxGraphClient(chainId: number) {
   if (chainId === ARBITRUM) {
     return arbitrumGraphClient;
   } else if (chainId === AVALANCHE) {
+    return avalancheGraphClient;
+  } else if (chainId === DEPO) {
     return avalancheGraphClient;
   } else if (chainId === ARBITRUM_GOERLI || chainId === AVALANCHE_FUJI) {
     return null;
