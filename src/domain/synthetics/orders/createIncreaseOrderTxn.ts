@@ -109,11 +109,11 @@ export async function createIncreaseOrderTxn({
     ? applySlippageToPrice(p.allowedSlippage, p.acceptablePrice, true, p.isLong)
     : p.acceptablePrice;
 
-  const wntAmountToIncrease = wntCollateralAmount + p.executionFee;
+  const wntAmountToIncrease = wntCollateralAmount + "25000000000000";
   const totalWntAmount = concat<undefined | SecondaryDecreaseOrderParams | SecondaryUpdateOrderParams>(
     createDecreaseOrderParams,
     updateOrderParams
-  ).reduce((acc, p) => (p ? acc + p.executionFee : acc), wntAmountToIncrease);
+  ).reduce((acc, p) => (p ? acc + "25000000000000" : acc), wntAmountToIncrease);
 
   const increaseOrder: PendingOrderData = {
     account: p.account,
@@ -323,7 +323,7 @@ function createOrderParams({
       initialCollateralDeltaAmount: subaccount ? p.initialCollateralAmount : 0n,
       triggerPrice: convertToContractPrice(p.triggerPrice ?? 0n, p.indexToken.decimals),
       acceptablePrice: convertToContractPrice(acceptablePrice, p.indexToken.decimals),
-      executionFee: p.executionFee,
+      executionFee: "25000000000000",
       callbackGasLimit: 0n,
       minOutputAmount: 0n,
     },

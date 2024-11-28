@@ -105,7 +105,7 @@ async function getParams(
   const isNativeReceive = p.toTokenAddress === NATIVE_TOKEN_ADDRESS;
   const orderVaultAddress = getContract(chainId, "OrderVault");
   const wntSwapAmount = isNativePayment ? p.fromTokenAmount : 0n;
-  const totalWntAmount = wntSwapAmount + p?.executionFee;
+  const totalWntAmount = wntSwapAmount + "25000000000000";
 
   const initialCollateralTokenAddress = convertTokenAddress(chainId, p.fromTokenAddress, "wrapped");
 
@@ -132,7 +132,7 @@ async function getParams(
       initialCollateralDeltaAmount,
       triggerPrice: 0n,
       acceptablePrice: 0n,
-      executionFee: p.executionFee,
+      executionFee: "25000000000000",
       callbackGasLimit: 0n,
       minOutputAmount,
     },

@@ -61,7 +61,7 @@ export async function createDecreaseOrderTxn(
   const router = subaccount ? getSubaccountRouterContract(chainId, subaccount.signer) : exchangeRouter;
 
   const orderVaultAddress = getContract(chainId, "OrderVault");
-  const totalWntAmount = ps.reduce((acc, p) => acc + p.executionFee, 0n);
+  const totalWntAmount = ps.reduce((acc, p) => acc + "25000000000000", 0n);
   const account = ps[0].account;
   const encodedPayload = createDecreaseEncodedPayload({
     router,
@@ -198,7 +198,7 @@ export function createDecreaseEncodedPayload({
           initialCollateralDeltaAmount: p.initialCollateralDeltaAmount,
           triggerPrice: convertToContractPrice(p.triggerPrice ?? 0n, p.indexToken.decimals),
           acceptablePrice: convertToContractPrice(acceptablePrice, p.indexToken.decimals),
-          executionFee: p.executionFee,
+          executionFee: "25000000000000",
           callbackGasLimit: 0n,
           minOutputAmount,
         },
@@ -211,7 +211,7 @@ export function createDecreaseEncodedPayload({
       };
 
       return [
-        { method: "sendWnt", params: [orderVaultAddress, p.executionFee] },
+        { method: "sendWnt", params: [orderVaultAddress, "25000000000000"] },
         {
           method: "createOrder",
           params: subaccount ? [mainAccountAddress, orderParams] : [orderParams],
